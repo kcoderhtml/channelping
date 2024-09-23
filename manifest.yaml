@@ -1,16 +1,21 @@
 display_information:
-    name: Ultimate Slackbot
-    description: The ultimate slackbot template
-    background_color: '#203020'
-    long_description: They call me bot; ultimate slackbot; I am the ultimate template for your every slackbot need. This field is required to be more than 174 characters which this extra filler text accomplishes
+    name: Channel Pinger
+    description: A tool to help ping channels
+    background_color: '#963232'
+    long_description: They call me pinger; channel pinger; I ping channels more specificaly i create a usergroup from the members of a channel. This field is required to be more than 174 characters which this extra filler text accomplishes
 features:
     app_home:
         home_tab_enabled: true
         messages_tab_enabled: false
         messages_tab_read_only_enabled: true
     bot_user:
-        display_name: Ultimate Slackbot
+        display_name: Channel Pinger
         always_online: false
+    slash_commands:
+        - command: /createchannelping
+          url: https://casual-renewing-reptile.ngrok-free.app/slack
+          description: Create a ping group from the members of the channel
+          should_escape: true
 oauth_config:
     scopes:
         bot:

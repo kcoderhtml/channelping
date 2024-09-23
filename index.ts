@@ -1,6 +1,6 @@
 import { SlackApp } from 'slack-edge'
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 
 import * as features from './features/index'
 
@@ -12,7 +12,7 @@ const environment = process.env.NODE_ENV
 console.log(
     `----------------------------------\n${name} Server\n----------------------------------\n`
 )
-console.log('🏗️  Starting ABOT...')
+console.log('🏗️  Starting Channel Pinger...')
 console.log('📦 Loading Slack App...')
 console.log('🔑 Loading environment variables...')
 
@@ -54,13 +54,15 @@ export default {
 }
 
 // loading db
-console.log(`⛁  Loading DB...`);
-const prisma = new PrismaClient();
+console.log(`⛁  Loading DB...`)
+const prisma = new PrismaClient()
 // list days of analytics
-console.log(`📅 Loaded ${await prisma.analytics.count()} days of analytics.`);
+console.log(`📅 Loaded ${await prisma.analytics.count()} days of analytics.`)
 
 console.log(
-    `🚀 Server Started in ${Bun.nanoseconds() / 1000000} milliseconds on version: ${version}!\n\n----------------------------------\n`
+    `🚀 Server Started in ${
+        Bun.nanoseconds() / 1000000
+    } milliseconds on version: ${version}!\n\n----------------------------------\n`
 )
 
 blog(
