@@ -1,0 +1,18 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data/database.db"
+}
+
+model Analytics {
+  id                         String   @id @default(uuid())
+  date                       DateTime @unique @default(now())
+  dashboardOpensAuthorized   Int      @default(0)
+  dashboardOpensUnauthorized Int      @default(0)
+}
