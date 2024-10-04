@@ -35,7 +35,7 @@ const command = async () => {
             return allMembers
         }
 
-        const members = await fetchMembers(payload.channel_id!)
+        const members = (await fetchMembers(payload.channel_id!)).length
 
         await slackClient.chat.postEphemeral({
             channel: payload.channel_id!,
