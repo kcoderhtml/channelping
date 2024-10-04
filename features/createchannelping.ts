@@ -11,11 +11,24 @@ const createChannelPing = async () => {
             return
         }
 
-        const members = await slackClient.conversations
-            .members({
-                channel: payload.channel?.id!,
-            })
-            .then((res) => res.members)
+        async function fetchMembers(channel: string) {
+            let allMembers: string[] = []
+            let nextCursor
+
+            do {
+                const response = await slackClient.conversations.members({
+                    channel,
+                    cursor: nextCursor,
+                })
+
+                allMembers = allMembers.concat(response.members!)
+                nextCursor = response.response_metadata?.next_cursor
+            } while (nextCursor)
+
+            return allMembers
+        }
+
+        const members = await fetchMembers(payload.channel?.id!)
 
         const channelName = await slackClient.conversations
             .info({

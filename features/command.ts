@@ -18,11 +18,24 @@ const command = async () => {
             }
         }
 
-        const members = await slackClient.conversations
-            .members({
-                channel: payload.channel_id!,
-            })
-            .then((res) => res.members?.length)
+        async function fetchMembers(channel: string) {
+            let allMembers: string[] = []
+            let nextCursor
+
+            do {
+                const response = await slackClient.conversations.members({
+                    channel,
+                    cursor: nextCursor,
+                })
+
+                allMembers = allMembers.concat(response.members!)
+                nextCursor = response.response_metadata?.next_cursor
+            } while (nextCursor)
+
+            return allMembers
+        }
+
+        const members = await fetchMembers(payload.channel_id!)
 
         await slackClient.chat.postEphemeral({
             channel: payload.channel_id!,
