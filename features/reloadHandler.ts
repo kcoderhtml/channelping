@@ -1,4 +1,4 @@
-import { slackApp } from '../index'
+import { slackApp, name } from '../index'
 
 const reloadHandler = async () => {
     // listen for action
