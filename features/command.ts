@@ -40,13 +40,13 @@ const command = async () => {
         await slackClient.chat.postEphemeral({
             channel: payload.channel_id!,
             user: context.userId!,
-            text: `Do you want to make a ping group for ${members} members?`,
+            text: `Do you want to make a ping group for ${members} members? (this will ping all of them initialy via slackbot by adding them to a ping group)`,
             blocks: [
                 {
                     type: 'section',
                     text: {
                         type: 'mrkdwn',
-                        text: `Are you sure you want to make a ping group for ${members} members?`,
+                        text: `Are you sure you want to make a ping group for ${members} members? (this will ping all of them initialy via slackbot by adding them to a ping group)`,
                     },
                 },
                 {
