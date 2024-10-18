@@ -105,8 +105,14 @@ const optOut = async () => {
             return
         }
 
+        const pinggroup = (
+            await slackClient.usergroups.list()
+        ).usergroups?.find(
+            (group) => group.handle == payload.channel?.name + '-ping'
+        )?.id
+
         await slackClient.usergroups.users.update({
-            usergroup: payload.channel?.name! + '-ping',
+            usergroup: pinggroup!,
             users: members.filter((id) => id !== context.userId!),
         })
 
