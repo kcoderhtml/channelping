@@ -16,6 +16,10 @@ features:
           url: https://casual-renewing-reptile.ngrok-free.app/slack
           description: Create a ping group from the members of the channel
           should_escape: true
+        - command: /optout-ping
+          url: https://casual-renewing-reptile.ngrok-free.app/slack
+          description: opt out of getting pinged by @channel pinger
+          should_escape: true
 oauth_config:
     scopes:
         bot:

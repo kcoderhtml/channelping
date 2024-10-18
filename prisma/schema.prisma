@@ -10,6 +10,13 @@ datasource db {
   url      = "file:./data/database.db"
 }
 
+model OptOutUsers {
+  id             String  @id
+  channels       String
+  optOutChannels String
+  completeOptOut Boolean
+}
+
 model Analytics {
   id                         String   @id @default(uuid())
   date                       DateTime @unique @default(now())
